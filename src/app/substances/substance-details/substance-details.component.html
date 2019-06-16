@@ -25,17 +25,60 @@
       </div>
     </div>
 
-    <!-- Synonymes -->
+    <!-- Synonyms -->
     <div
       class="substance-details-section"
-      *ngIf="substance.Synonymes !== null && substance.Synonymes.length > 0">
+      *ngIf="substance.Synonyms !== null && substance.Synonyms.length > 0">
       <div class="section-title">
         <ion-icon name="bookmark"></ion-icon>
         <span>Also known as</span>
       </div>
       <div class="section-content">
-        {{ substance.Synonymes.join(', ') }}
+        {{ substance.Synonyms.join(', ') }}
       </div>
     </div>
+
+    <!-- Study Data -->
+    <div
+      class="substance-details-section"
+      *ngIf="substance.Studies !== null && substance.Studies.length > 0">
+
+      <div class="section-divider"></div>
+
+      <div class="section-title">
+          <span class="flex-basis-40">Carcinogenic:&nbsp;&nbsp;</span>
+          <span class="flex-basis-60" [style.color]="getColor(substance.Studies[0].IsCarcinogenic)">
+            {{ getText(substance.Studies[0].IsCarcinogenic) }}
+          </span>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-title">
+          <span class="flex-basis-40">Genotoxic:&nbsp;&nbsp;</span>
+          <span class="flex-basis-60" [style.color]="getColor(substance.Studies[0].IsGenotoxic)">
+            {{ getText(substance.Studies[0].IsGenotoxic) }}
+          </span>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-title">
+          <span class="flex-basis-40">Mutagenic:&nbsp;&nbsp;</span>
+          <span class="flex-basis-60" [style.color]="getColor(substance.Studies[0].IsMutagenic)">
+            {{ getText(substance.Studies[0].IsMutagenic) }}
+          </span>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="text-center" *ngIf="substance.Studies[0].ExternalUrl">
+        <ion-button color="primary" (click)="openBrowserLink(substance.Studies[0].ExternalUrl)">See full study</ion-button>
+      </div>
+
+      <div class="section-divider"></div>
+
+    </div>
+
   </div>
 </div>

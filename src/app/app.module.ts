@@ -14,6 +14,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { ActionSheet } from '@ionic-native/action-sheet/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,7 +33,8 @@ import { ActionSheet } from '@ionic-native/action-sheet/ngx';
     AlertController,
     HTTP,
     Toast,
-    ActionSheet
+    ActionSheet,
+    InAppBrowser
   ],
   bootstrap: [AppComponent]
 })
