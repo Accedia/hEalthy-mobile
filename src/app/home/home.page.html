@@ -2,10 +2,10 @@
   <div class="full-page-container">
 
     <!-- Camera/Gallery picker -->
-    <div class="camera-icon-button" (click)="openCamera()">
+    <div class="camera-icon-button" (click)="openSourceTypeActionSheet()">
       <div class="camera-icon-content" *ngIf="!loading">
-        <ion-icon name="camera" size="large"></ion-icon>
-        <div class="button-label">Scan</div>
+        <ion-icon name="camera"></ion-icon>
+        <div class="button-label">Pick or Scan</div>
       </div>
       <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
     </div>

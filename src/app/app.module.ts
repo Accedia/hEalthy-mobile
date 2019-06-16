@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { ActionSheet } from '@ionic-native/action-sheet/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     Network,
     AlertController,
     HTTP,
-    Toast
+    Toast,
+    ActionSheet
   ],
   bootstrap: [AppComponent]
 })
