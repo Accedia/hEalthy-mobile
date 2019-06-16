@@ -1,6 +1,16 @@
-// App Styles
-// ----------------------------------------------------------------------------
-// Put style rules here that you want to apply to the entire application. These 
-// styles are for the entire app and not just one component. Additionally, this 
-// file can hold Sass mixins, functions, and placeholder classes to be imported 
-// and used throughout the application.
+.text-center {
+  text-align: center;
+}
+
+ion-header {
+  margin-bottom: 15px;
+}
+
+.alert-box {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffecec;
+  color: #555;
+  border-radius: 4px;
+}

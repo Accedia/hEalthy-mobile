@@ -1,0 +1,38 @@
+<div class="substance-container">
+
+  <!-- Header -->
+  <div class="substance-header" (click)="toggleIsExpanded()" [ngClass]="{'expanded': isExpanded}">
+    <div class="substance-name">
+      {{ substance.Name }}
+    </div>
+    <div class="substance-view-icon-container">
+      <ion-icon [name]="(!isExpanded) ? 'arrow-round-down' : 'arrow-round-up'"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Details -->
+  <div class="substance-details" *ngIf="isExpanded">
+    <div
+      class="substance-details-section"
+      *ngIf="substance.Description !== null && substance.Description !== ''">
+      <div class="section-title">
+        <ion-icon name="folder-open"></ion-icon>
+        <span>Description</span>
+      </div>
+      <div class="section-content">
+        {{ substance.Description }}
+      </div>
+    </div>
+    <div
+      class="substance-details-section"
+      *ngIf="substance.Synonyms !== null && substance.Synonyms.length > 0">
+      <div class="section-title">
+        <ion-icon name="bookmark"></ion-icon>
+        <span>Also known as</span>
+      </div>
+      <div class="section-content">
+        {{ substance.Synonyms.join(', ') }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
 {
   "name": "hEalthy-mobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

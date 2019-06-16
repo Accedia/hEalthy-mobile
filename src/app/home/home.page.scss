@@ -1,1 +1,49 @@
+$border-radius: 4px;
 
+.full-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .camera-icon-button {
+    display: flex;
+    width: auto;
+    align-items: center;
+    padding: 20px 25px;
+    border: 1px solid #ccc;
+    border-radius: $border-radius;
+
+    > .camera-icon-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button-label {
+      font-weight: bold;
+    }
+  }
+
+  .spacer {
+    margin-top: 20px;
+  }
+
+  .input-container {
+    width: 80%;
+    margin: 0 auto;
+
+    ion-input {
+      border: 1px solid #ccc;
+      border-radius: $border-radius;
+      --padding-start: 5px;
+      --padding-end: 5px;
+    }
+
+    ion-icon {
+      font-size: 1.3em;
+      margin-left: 10px;
+    }
+  }
+}

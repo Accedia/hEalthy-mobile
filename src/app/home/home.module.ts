@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Camera } from '@ionic-native/camera/ngx';
 
 import { HomePage } from './home.page';
+import { ImgurUploadModule } from '../services/imgur-upload/imgur-upload.module';
 
 @NgModule({
   imports: [
@@ -16,8 +18,12 @@ import { HomePage } from './home.page';
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+    ImgurUploadModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [
+    Camera
+  ]
 })
 export class HomePageModule {}

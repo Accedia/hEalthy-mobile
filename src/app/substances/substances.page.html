@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Search results</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="spacer"></div>
+
+<ion-content>
+  <!-- Loader -->
+  <div *ngIf="loading" class="text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <!-- No results found -->
+  <div *ngIf="!loading && substances.length === 0" class="alert-box">
+    We were not able to find any results... Please try using a clearer image.
+  </div>
+
+  <!-- Results found -->
+  <div *ngIf="!loading && substances.length > 0">
+    <substance-details
+      *ngFor="let substance of substances; "
+      [substance]="substance"
+    ></substance-details>
+  </div>
+</ion-content>
