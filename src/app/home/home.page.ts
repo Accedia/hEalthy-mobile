@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions, PictureSourceType, MediaType, EncodingType, DestinationType } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
 import { SubstancesService } from '../substances/substances.service';
+import { ActionSheetOptions, ActionSheet } from '@ionic-native/action-sheet/ngx';
 
 @Component({
   selector: 'app-home',
@@ -16,19 +17,37 @@ export class HomePage {
   constructor(
     private camera: Camera,
     private router: Router,
-    private substancesService: SubstancesService
+    private substancesService: SubstancesService,
+    private actionSheet: ActionSheet
   ) {}
 
-  public async openCamera() {
+  public openSourceTypeActionSheet() {
+    const actionSheetOptions: ActionSheetOptions = {
+      title: 'Choose',
+      buttonLabels: ['Camera', 'Gallery'],
+      addCancelButtonWithLabel: 'Cancel',
+    };
+
+    this.actionSheet.show(actionSheetOptions).then((buttonIndex: number) => {
+      if (buttonIndex === 1) {
+        this.openCamera(PictureSourceType.CAMERA);
+      } else if (buttonIndex === 2) {
+        this.openCamera(PictureSourceType.PHOTOLIBRARY);
+      }
+    });
+  }
+
+  private async openCamera(sourceType: PictureSourceType) {
     if (this.loading) {
       return;
     }
 
     const options: CameraOptions = {
       quality: 80,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
+      destinationType: DestinationType.DATA_URL,
+      encodingType: EncodingType.JPEG,
+      mediaType: MediaType.PICTURE,
+      sourceType,
       correctOrientation: true
     };
 

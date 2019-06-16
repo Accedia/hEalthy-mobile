@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { timer, combineLatest, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,16 @@ export class SubstancesService {
 
   public searchForSubstance(substance: string): Promise<any> {
     const httpParams: HttpParams = this.buildSearchHttpParams(substance);
-    return this.http.get(`${this.API_LINK}/substance`, {
+    const searchObservable = this.http.get(`${this.API_LINK}/substance`, {
       params: httpParams
-    }).toPromise();
+    });
+
+    const timerObservable = timer(4000);
+
+    // tslint:disable-next-line: deprecation
+    return combineLatest(timerObservable, searchObservable)
+      .pipe(flatMap(data => of(data[1])))
+      .toPromise();
   }
 
   private buildSearchHttpParams(substance: string) {
