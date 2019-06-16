@@ -17,7 +17,9 @@
 
   <!-- No results found -->
   <div *ngIf="!loading && substances.length === 0" class="alert-box">
-    We were not able to find any results... Please try using a clearer image.
+    <span>We were not able to find any results.</span><br>
+    <span *ngIf="searchType === SEARCH_TYPES.OCR">Please try using a clearer image.</span>
+    <span *ngIf="searchType === SEARCH_TYPES.STRING">Please try using a different substance.</span>
   </div>
 
   <!-- Results found -->

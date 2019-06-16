@@ -12,6 +12,7 @@
 
   <!-- Details -->
   <div class="substance-details" *ngIf="isExpanded">
+    <!-- Description -->
     <div
       class="substance-details-section"
       *ngIf="substance.Description !== null && substance.Description !== ''">
@@ -23,15 +24,17 @@
         {{ substance.Description }}
       </div>
     </div>
+
+    <!-- Synonymes -->
     <div
       class="substance-details-section"
-      *ngIf="substance.Synonyms !== null && substance.Synonyms.length > 0">
+      *ngIf="substance.Synonymes !== null && substance.Synonymes.length > 0">
       <div class="section-title">
         <ion-icon name="bookmark"></ion-icon>
         <span>Also known as</span>
       </div>
       <div class="section-content">
-        {{ substance.Synonyms.join(', ') }}
+        {{ substance.Synonymes.join(', ') }}
       </div>
     </div>
   </div>
