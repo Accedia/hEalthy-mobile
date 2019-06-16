@@ -3,6 +3,7 @@ import { SubstancesService } from './substances.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toast } from '@ionic-native/toast/ngx';
 import { SearchType } from './SearchType';
+import funFacts from '../local-data/fun-facts';
 
 @Component({
   selector: 'substances-page',
@@ -12,6 +13,7 @@ import { SearchType } from './SearchType';
 export class SubstancesPage {
 
   private loading: boolean;
+  private funFact: string;
   private substances: any[]; // TODO: Add typing
   private SEARCH_TYPES = SearchType;
   private searchType: SearchType;
@@ -26,8 +28,24 @@ export class SubstancesPage {
   }
 
   private setVariables() {
-    this.loading = true;
+    this.setLoading(true);
     this.substances = [];
+  }
+
+  private setLoading(loading: boolean) {
+    if (loading) {
+      this.funFact = this.getRandomFact();
+    }
+
+    this.loading = loading;
+  }
+
+  private getRandomFact() {
+    const max = funFacts.length - 1;
+    const min = 0;
+    const randomIndex = Math.floor(Math.random() * (max - min) + min);
+
+    return funFacts[randomIndex];
   }
 
   async ionViewDidEnter() {
@@ -50,13 +68,13 @@ export class SubstancesPage {
 
   private async getSubstancesFromImage() {
     try {
-      this.loading = true;
+      this.setLoading(true);
       const googleResponse = await this.substancesService.readTextFromImage();
       const result = googleResponse.responses[0];
 
       // No Result from OCR API
       if (Object.keys(result).length === 0) {
-        this.loading = false;
+        this.setLoading(false);
         return;
       }
 
@@ -67,7 +85,7 @@ export class SubstancesPage {
     } catch (error) {
       this.showGenericError(error);
     } finally {
-      this.loading = false;
+      this.setLoading(false);
     }
   }
 
