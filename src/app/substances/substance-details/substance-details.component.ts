@@ -18,6 +18,45 @@ export class SubstanceDetailsComponent {
     this.isExpanded = !this.isExpanded;
   }
 
+  getOverallStatusBadgeColor(overallStatus: string): string {
+    switch (overallStatus) {
+      case 'Unknown':
+        return 'gray';
+      case 'Safe':
+        return 'green';
+      case 'PossiblyDangerous':
+        return 'orange';
+      case 'Dangerous':
+        return 'red';
+      default:
+        return 'gray';
+    }
+  }
+
+  getOverallStatusShortText(overallStatus: string): string {
+    switch (overallStatus) {
+      case 'Unknown':
+        return '?';
+      case 'Safe':
+        return '+';
+      case 'PossiblyDangerous':
+        return '+/-';
+      case 'Dangerous':
+        return '-';
+      default:
+        return '?';
+    }
+  }
+
+  getOverallStatusFullText(overallStatus: string): string {
+    switch (overallStatus) {
+      case 'PossiblyDangerous':
+        return 'Possibly dangerous';
+      default:
+        return overallStatus || 'Unknown';
+    }
+  }
+
   public getColor(status: string): string {
     switch (status) {
       case 'Negative':

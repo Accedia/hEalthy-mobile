@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .substance-container {
   padding: 15px 10px;
   border-bottom: 1px solid #ccc;
@@ -16,11 +18,47 @@
     }
 
     .substance-view-icon-container {
-      padding-left: 20px;
+      padding-left: 10px;
 
       ion-icon {
         font-size: 25px;
       }
+    }
+  }
+
+  .overall-status-badge {
+    width: auto;
+    padding: 4px 10px ;
+    font-size: 0.7em;
+    margin: 0 10px;
+    line-height: 1em;
+    border-radius: 4px;
+    text-align: center;
+
+    &.large {
+      font-size: 1em;
+      width: 55%;
+      margin: 0 auto;
+    }
+
+    &.gray {
+      background: $gray;
+      color: $black;
+    }
+
+    &.red {
+      background: $red;
+      color: $white;
+    }
+
+    &.green {
+      background: $green;
+      color: $black;
+    }
+
+    &.orange {
+      background: $orange;
+      color: $black;
     }
   }
 
@@ -46,6 +84,22 @@
 
         &.flex-basis-60 {
           flex-basis: 60%;
+        }
+
+        &.gray {
+          color: $gray;
+        }
+
+        &.red {
+          color: $red;
+        }
+
+        &.green {
+          color: $green;
+        }
+
+        &.orange {
+          color: $orange;
         }
       }
     }
