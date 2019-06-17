@@ -43,7 +43,7 @@ export class HomePage {
     }
 
     const options: CameraOptions = {
-      quality: 80,
+      quality: 100,
       destinationType: DestinationType.DATA_URL,
       encodingType: EncodingType.JPEG,
       mediaType: MediaType.PICTURE,
