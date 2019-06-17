@@ -1,4 +1,15 @@
-$border-radius: 4px;
+@import '../variables.scss';
+
+@font-face {
+  font-family: 'Shadows Into Light';
+  font-style: 'cursive';
+  src: url('../../assets/fonts/ShadowsIntoLight.ttf');
+}
+
+.home-page {
+  --ion-background-color: #e85a5a;
+  --ion-text-color: #fff;
+}
 
 .full-page-container {
   display: flex;
@@ -7,13 +18,19 @@ $border-radius: 4px;
   align-items: center;
   height: 100%;
 
+  .logo-text {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 4em;
+    line-height: 2em;
+  }
+
   .camera-icon-button {
     display: flex;
     width: auto;
     align-items: center;
     padding: 20px 25px;
-    border: 1px solid #ccc;
-    border-radius: $border-radius;
+    border: 1px solid $white;
+    border-radius: 30px;
 
     > .camera-icon-content {
       display: flex;
@@ -34,13 +51,18 @@ $border-radius: 4px;
     margin-top: 20px;
   }
 
+  .or-text {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 2em;
+  }
+
   .input-container {
     width: 80%;
     margin: 0 auto;
 
     ion-input {
-      border: 1px solid #ccc;
-      border-radius: $border-radius;
+      border: 1px solid $white;
+      border-radius: 8px;
       --padding-start: 5px;
       --padding-end: 5px;
     }
