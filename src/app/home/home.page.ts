@@ -3,6 +3,8 @@ import { Camera, CameraOptions, PictureSourceType, MediaType, EncodingType, Dest
 import { Router } from '@angular/router';
 import { SubstancesService } from '../substances/substances.service';
 import { ActionSheetOptions, ActionSheet } from '@ionic-native/action-sheet/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,9 @@ export class HomePage {
     private camera: Camera,
     private router: Router,
     private substancesService: SubstancesService,
-    private actionSheet: ActionSheet
+    private actionSheet: ActionSheet,
+    private crop: Crop,
+    private file: File
   ) {}
 
   public openSourceTypeActionSheet() {
@@ -44,7 +48,7 @@ export class HomePage {
 
     const options: CameraOptions = {
       quality: 100,
-      destinationType: DestinationType.DATA_URL,
+      destinationType: DestinationType.FILE_URL,
       encodingType: EncodingType.JPEG,
       mediaType: MediaType.PICTURE,
       sourceType,
@@ -52,14 +56,27 @@ export class HomePage {
     };
 
     try {
-      this.substancesService.substanceBase64Image = await this.camera.getPicture(options);
+      const rawImage = await this.camera.getPicture(options);
+      const cropped = await this.crop.crop(rawImage, { quality: 100, targetWidth: -1, targetHeight: -1 });
+      const croppedBase64 = await this.croppedToBase64(cropped);
+
+      this.substancesService.substanceBase64Image = croppedBase64;
       this.loading = true;
       this.navigateToSubstancesPage();
     } catch (error) {
-      console.error(error);
+      console.error(JSON.stringify(error));
     } finally {
       this.loading = false;
     }
+  }
+
+  private croppedToBase64(fileUrl: string): Promise<string> {
+    const rawUrl = fileUrl.split('?')[0];
+    const splitPath = rawUrl.split('/');
+    const imageName = splitPath[splitPath.length - 1];
+    const filePath = rawUrl.split(imageName)[0];
+
+    return this.file.readAsDataURL(filePath, imageName);
   }
 
   private navigateToSubstancesPage() {

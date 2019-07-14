@@ -9,12 +9,13 @@ import { Network } from '@ionic-native/network/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { ActionSheet } from '@ionic-native/action-sheet/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     HTTP,
     Toast,
     ActionSheet,
-    InAppBrowser
+    InAppBrowser,
+    Crop,
+    File
   ],
   bootstrap: [AppComponent]
 })
